@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowlens | Turn onboarding confusion into customer confidence</title>
+    <meta name="description" content="AI-powered user onboarding analytics platform. Visualize where users drop off and automatically generate in-app guidance fixes to reduce churn.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://flowlens.example.com/">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Flowlens | User Onboarding Analytics">
+    <meta property="og:description" content="Visualize where users drop off and automatically generate in-app guidance fixes to reduce churn.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:url" content="https://flowlens.example.com/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flowlens | User Onboarding Analytics">
+    <meta name="twitter:description" content="Visualize where users drop off and automatically generate in-app guidance fixes.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics placeholder -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+
+    <!-- Meta Pixel placeholder -->
+    <!--
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'XXXXXXXXXXXXXXX');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
+    -->
+
+    <!-- Schema.org SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Flowlens",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      },
+      "description": "AI-powered user onboarding analytics platform that helps SaaS companies reduce churn."
+    }
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0A0A0F',
+                        light: '#F0EEE8',
+                        accent: '#F5A623',
+                        slate: {
+                            muted: '#64748B',
+                            dark: '#1E293B',
+                            darker: '#0F172A'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"DM Serif Display"', 'serif'],
+                        sans: ['"DM Sans"', 'sans-serif'],
+                    },
+                    animation: {
+                        blob: 'blob 12s infinite',
+                        shimmer: 'shimmer 2.5s linear infinite',
+                        float: 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(60px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-40px, 40px) scale(0.95)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        shimmer: {
+                            from: { backgroundPosition: '200% 0' },
+                            to: { backgroundPosition: '-200% 0' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #0A0A0F;
+            color: #F0EEE8;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0A0A0F; }
+        ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #F5A623; }
+
+        /* Noise Texture Overlay */
+        .bg-noise {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.035;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        /* Hero Text Stagger Animation */
+        .reveal-word {
+            opacity: 0;
+            transform: translateY(20px);
+            display: inline-block;
+        }
+        @keyframes reveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cursor Spotlight Effect */
+        .spotlight {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(245, 166, 35, 0.12) 0%, rgba(10, 10, 15, 0) 60%);
+            width: 600px;
+            height: 600px;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        /* Primary Button Shimmer */
+        .btn-shimmer {
+            background: linear-gradient(90deg, #F5A623 0%, #FFD18B 50%, #F5A623 100%);
+            background-size: 200% 100%;
+            color: #0A0A0F;
+        }
+        .btn-shimmer:hover {
+            animation: shimmer 1.5s infinite linear;
+            box-shadow: 0 0 25px rgba(245, 166, 35, 0.35);
+        }
+
+        /* Glassmorphism Card Utilities */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .glass-card:hover .glow-icon {
+            color: #F5A623;
+            filter: drop-shadow(0 0 8px rgba(245, 166, 35, 0.5));
+        }
+
+        /* FAQ Accordion Transition */
+        .faq-content {
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 0;
+            overflow: hidden;
+        }
+        .nav-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="font-sans relative overflow-x-hidden antialiased selection:bg-accent selection:text-dark">
+    <!-- Noise Overlay -->
+    <div class="bg-noise"></div>
+
+    <!-- Floating Book a Demo Button -->
+    <a href="#demo" id="floating-demo" class="fixed right-6 bottom-6 opacity-0 translate-y-4 transition-all duration-500 z-40 bg-white/5 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-full text-sm font-medium hover:bg-white/10 hover:border-white/20 hover:text-accent shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Book a Demo">
+        Book a Demo
+    </a>
+
+    <!-- Navigation -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 py-6 nav-transition">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <!-- Logo -->
+                <a href="/" class="text-2xl font-serif tracking-tight text-light flex items-center gap-2" aria-label="Flowlens Home">
+                    <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="currentColor"/>
+                    </svg>
+                    Flowlens
+                </a>
+                <!-- Changelog Badge -->
+                <a href="#changelog" class="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs text-slate-300 hover:text-light transition-colors backdrop-blur-md">
+                    <span class="text-accent animate-pulse">✦</span> New: AI Fix Suggestions v2.0 &rarr;
+                </a>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#features" class="hover:text-light transition-colors">Features</a>
+                <a href="#pricing" class="hover:text-light transition-colors">Pricing</a>
+                <a href="#changelog" class="hover:text-light transition-colors">Changelog</a>
+                <a href="#docs" class="hover:text-light transition-colors">Docs</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#login" class="text-sm font-medium text-slate-300 hover:text-light transition-colors">Log in</a>
+                <a href="#trial" class="px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-light text-sm font-medium transition-colors border border-white/5">
+                    Start Free Trial
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-300 focus:outline-none hover:text-light" aria-label="Open Menu">
+                <svg id="menu-icon" class="w-6 h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-dark/95 backdrop-blur-xl border-b border-white/10 px-6 py-6 flex-col gap-4 shadow-2xl">
+            <a href="#features" class="text-slate-300 py-2 border-b border-white/5 text-lg">Features</a>
+            <a href="#pricing" class="text-slate-300 py-2 border-b border-white/5 text-lg">Pricing</a>
+            <a href="#changelog" class="text-slate-300 py-2 border-b border-white/5 text-lg">Changelog</a>
+            <a href="#docs" class="text-slate-300 py-2 border-b border-white/5 text-lg">Docs</a>
+            <a href="#login" class="text-slate-300 py-2 border-b border-white/5 text-lg">Log in</a>
+            <a href="#trial" class="text-accent py-2 font-medium text-lg mt-2">Start Free Trial</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="demo" class="relative pt-40 pb-20 md:pt-52 md:pb-32 overflow-hidden flex flex-col items-center justify-center text-center px-6">
+            <!-- Animated Gradient Orb -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] bg-accent/20 rounded-full blur-[120px] mix-blend-screen animate-blob pointer-events-none -z-10"></div>
+            
+            <div class="max-w-4xl mx-auto relative z-10">
+                <h1 id="hero-title" class="text-5xl md:text-7xl lg:text-8xl font-serif leading-[1.1] mb-8 tracking-tight">
+                    Turn onboarding confusion into customer confidence.
+                </h1>
+                <p class="text-lg md:text-xl text-slate-muted max-w-2xl mx-auto mb-10 leading-relaxed font-light reveal-on-scroll">
+                    Flowlens visualizes exactly where users drop off and uses AI to generate instant in-app guidance fixes. Stop guessing why they churn.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal-on-scroll">
+                    <a href="#signup" class="w-full sm:w-auto px-8 py-4 rounded-full btn-shimmer font-semibold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(245,166,35,0.2)]">
+                        Start Free &mdash; No Credit Card
+                    </a>
+                    <a href="#how-it-works" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-light font-medium text-sm transition-all group flex items-center justify-center gap-2">
+                        See How It Works 
+                        <span class="group-hover:translate-y-1 transition-transform">&darr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Floating High-Fidelity Mockup (Replaced CSS art with realistic UI mockup) -->
+            <div class="w-full max-w-5xl mx-auto mt-20 relative z-10 animate-float reveal-on-scroll">
+                <div class="relative rounded-xl border border-white/10 bg-[#12121A]/80 backdrop-blur-xl shadow-2xl overflow-hidden aspect-[16/9] md:aspect-[21/9]">
+                    <!-- Window Controls -->
+                    <div class="absolute top-0 left-0 w-full h-10 bg-white/5 border-b border-white/5 flex items-center px-4 gap-2 z-20 backdrop-blur-md">
+                        <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                        <div class="mx-auto text-[10px] text-slate-500 font-medium tracking-widest uppercase">Flowlens Dashboard</div>
+                    </div>
+                    <!-- Dashboard Image -->
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Flowlens Analytics Dashboard" class="w-full h-full object-cover object-top opacity-80 mix-blend-screen scale-105" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0F] via-transparent to-transparent z-10"></div>
+                </div>
+                
+                <!-- Social Proof Line -->
+                <div class="mt-16 text-center reveal-on-scroll">
+                    <p class="text-xs uppercase tracking-widest text-slate-muted mb-6 font-medium">Trusted by 1,200+ product teams at companies like</p>
+                    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale select-none pointer-events-none">
+                        <!-- High quality SVG logos for realism -->
+                        <svg class="h-6" viewBox="0 0 100 30" fill="currentColor"><path d="M5 15h90v2H5zM20 5h2v20h-2zM40 10h10v10H40zM70 5h2v20h-2z" /></svg>
+                        <svg class="h-6" viewBox="0 0 100 30" fill="currentColor"><circle cx="20" cy="15" r="10"/><rect x="40" y="5" width="20" height="20"/><polygon points="80,5 90,25 70,25"/></svg>
+                        <svg class="h-6" viewBox="0 0 100 30" fill="currentColor"><path d="M10 25L50 5l40 20H10z" fill="none" stroke="currentColor" stroke-width="4"/></svg>
+                        <svg class="h-6" viewBox="0 0 100 30" fill="currentColor"><rect x="10" y="10" width="80" height="10" rx="5"/></svg>
+                        <svg class="h-6" viewBox="0 0 100 30" fill="currentColor"><circle cx="15" cy="15" r="8"/><circle cx="45" cy="15" r="8"/><circle cx="75" cy="15" r="8"/></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Decorative Divider -->
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+        <!-- Problem / Solution Section -->
+        <section id="problem-solution" class="py-24 md:py-32 px-6 overflow-hidden">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 relative">
+                
+                <!-- The Problem -->
+                <div class="space-y-12 reveal-on-scroll">
+                    <div class="inline-block px-3 py-1 bg-slate-dark rounded-full text-slate-muted text-xs font-bold uppercase tracking-wider border border-white/5 mb-2">The Problem</div>
+                    <h2 class="text-4xl md:text-5xl font-serif">You're flying blind.</h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20 text-red-400">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Silent drop-offs</h3>
+                                <p class="text-slate-muted text-sm leading-relaxed">Users sign up, get confused, and leave without a word. Your analytics only show numbers, not reasons.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20 text-red-400">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Engineering bottlenecks</h3>
+                                <p class="text-slate-muted text-sm leading-relaxed">Fixing a broken flow takes weeks of planning, Jira tickets, and deployment cycles.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20 text-red-400">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Wasted acquisition spend</h3>
+                                <p class="text-slate-muted text-sm leading-relaxed">You spend $150 to acquire a user, only to lose them on step 3 of the setup wizard.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dramatic Separator (hidden on mobile, visible on desktop) -->
+                <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent -translate-x-1/2"></div>
+
+                <!-- The Fix -->
+                <div class="space-y-12 relative reveal-on-scroll">
+                    <!-- Accent glow behind right column -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[150%] bg-accent/5 blur-[100px] rounded-full pointer-events-none"></div>
+                    
+                    <div class="inline-block px-3 py-1 bg-accent/10 rounded-full text-accent text-xs font-bold uppercase tracking-wider border border-accent/20 mb-2 relative z-10">The Fix</div>
+                    <h2 class="text-4xl md:text-5xl font-serif relative z-10">Clarity on day one.</h2>
+                    <div class="space-y-8 relative z-10">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20 text-accent">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Visual Drop-off Maps</h3>
+                                <p class="text-slate-muted text-sm leading-relaxed">See exact moments of friction. We translate raw event data into clear visual paths.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20 text-accent">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">AI-Generated Nudges</h3>
+                                <p class="text-slate-muted text-sm leading-relaxed">Flowlens automatically suggests and deploys tooltips, modals, or checklists to patch leaks instantly.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20 text-accent">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Recovered Revenue</h3>
+                                <p class="text-slate-muted text-sm leading-relaxed">Turn abandoned signups into activated customers. Watch your activation rate climb by 30% or more.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-24 md:py-32 bg-[#0C0C12] border-y border-white/5 relative overflow-hidden">
+            <!-- Spotlight container (JS managed) -->
+            <div id="features-spotlight-container" class="absolute inset-0 z-0 overflow-hidden"></div>
+            
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
+                    <h2 class="text-3xl md:text-5xl font-serif mb-6">Everything you need to fix the funnel.</h2>
+                    <p class="text-slate-muted">Built for growth teams who want answers, not endless SQL queries.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Feature 1 -->
+                    <article class="glass-card p-8 rounded-2xl reveal-on-scroll">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-slate-300 transition-colors glow-icon">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Funnel Drop-off Maps</h3>
+                        <p class="text-slate-muted text-sm leading-relaxed">Visualize the exact step where users abandon the setup process with pixel-perfect heatmaps.</p>
+                    </article>
+                    
+                    <!-- Feature 2 -->
+                    <article class="glass-card p-8 rounded-2xl reveal-on-scroll" style="transition-delay: 100ms;">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-slate-300 transition-colors glow-icon">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">AI Fix Suggestions</h3>
+                        <p class="text-slate-muted text-sm leading-relaxed">Flowlens analyzes the blockages and drafts personalized in-app guides to push users forward.</p>
+                    </article>
+
+                    <!-- Feature 3 -->
+                    <article class="glass-card p-8 rounded-2xl reveal-on-scroll" style="transition-delay: 200ms;">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-slate-300 transition-colors glow-icon">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Session Replay Snippets</h3>
+                        <p class="text-slate-muted text-sm leading-relaxed">Watch anonymized replays of the exact moments users get stuck. No more guessing why.</p>
+                    </article>
+
+                    <!-- Feature 4 -->
+                    <article class="glass-card p-8 rounded-2xl reveal-on-scroll">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-slate-300 transition-colors glow-icon">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Cohort Segmentation</h3>
+                        <p class="text-slate-muted text-sm leading-relaxed">Slice your data by role, company size, or plan tier to see how different users experience your app.</p>
+                    </article>
+
+                    <!-- Feature 5 -->
+                    <article class="glass-card p-8 rounded-2xl reveal-on-scroll" style="transition-delay: 100ms;">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-slate-300 transition-colors glow-icon">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Slack Alerts</h3>
+                        <p class="text-slate-muted text-sm leading-relaxed">Get notified instantly in Slack when a key account encounters friction during onboarding.</p>
+                    </article>
+
+                    <!-- Feature 6 -->
+                    <article class="glass-card p-8 rounded-2xl reveal-on-scroll" style="transition-delay: 200ms;">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-slate-300 transition-colors glow-icon">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">No-code Setup</h3>
+                        <p class="text-slate-muted text-sm leading-relaxed">Install a single JS snippet. No manual event tagging or engineering favors required.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-24 md:py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16 md:mb-24 reveal-on-scroll">
+                    <h2 class="text-3xl md:text-5xl font-serif mb-4">Minutes to setup.<br>Months of retained revenue.</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                    <!-- Connecting line -->
+                    <div class="hidden md:block absolute top-12 left-[10%] right-[10%] h-px bg-white/10"></div>
+                    
+                    <!-- Step 1 -->
+                    <div class="relative z-10 reveal-on-scroll">
+                        <div class="text-7xl font-serif text-white/5 mb-6 leading-none select-none">01</div>
+                        <div class="w-24 h-24 bg-dark border border-white/10 rounded-2xl flex items-center justify-center mb-6 shadow-xl relative">
+                            <div class="absolute inset-0 bg-accent/5 rounded-2xl"></div>
+                            <svg class="w-8 h-8 text-slate-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Install the snippet</h3>
+                        <p class="text-slate-muted text-sm leading-relaxed">Drop our lightweight script into your <code>&lt;head&gt;</code>. It automatically captures UI interactions without manual event tracking.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative z-10 md:mt-12 reveal-on-scroll" style="transition-delay: 100ms;">
+                        <div class="text-7xl font-serif text-white/5 mb-6 leading-none select-none">02</div>
+                        <div class="w-24 h-24 bg-dark border border-white/10 rounded-2xl flex items-center justify-center mb-6 shadow-xl relative">
+                            <div class="absolute inset-0 bg-accent/5 rounded-2xl"></div>
+                            <svg class="w-8 h-8 text-slate-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Flowlens maps your app</h3>
+                        <p class="text-slate-muted text-sm leading-relaxed">The AI reconstructs your actual user journeys, building visual flowcharts of how people use the product.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative z-10 md:mt-24 reveal-on-scroll" style="transition-delay: 200ms;">
+                        <div class="text-7xl font-serif text-white/5 mb-6 leading-none select-none">03</div>
+                        <div class="w-24 h-24 bg-dark border border-white/10 rounded-2xl flex items-center justify-center mb-6 shadow-xl relative">
+                            <div class="absolute inset-0 bg-accent/10 rounded-2xl shadow-[0_0_30px_rgba(245,166,35,0.2)]"></div>
+                            <svg class="w-8 h-8 text-accent relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-accent">Get AI-suggested nudges</h3>
+                        <p class="text-slate-muted text-sm leading-relaxed">Review auto-generated solutions (like tooltips or checklist items) to fix drop-offs, and deploy them with one click.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="py-24 md:py-32 bg-[#0C0C12] border-y border-white/5 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-serif mb-4">Don't just take our word for it.</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Testimonial 1 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal-on-scroll">
+                        <div>
+                            <div class="flex text-accent mb-4 text-xl">
+                                &#9733;&#9733;&#9733;&#9733;&#9733;
+                            </div>
+                            <p class="text-slate-300 mb-8 leading-relaxed">"We were losing 40% of signups on step 2. Flowlens showed us users were confused by a specific dropdown. We fixed it with an AI-suggested tooltip, and completion rates jumped to 85% overnight."</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <img src="https://i.pravatar.cc/150?u=sarah" alt="Sarah Jenkins" class="w-10 h-10 rounded-full border border-white/10" loading="lazy">
+                            <div>
+                                <div class="text-sm font-semibold text-light">Sarah Jenkins</div>
+                                <div class="text-xs text-slate-muted">Head of Product, Vortex</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between relative overflow-hidden reveal-on-scroll" style="transition-delay: 100ms;">
+                        <!-- Subtle highlight -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-[50px]"></div>
+                        <div class="relative z-10">
+                            <div class="flex text-accent mb-4 text-xl">
+                                &#9733;&#9733;&#9733;&#9733;&#9733;
+                            </div>
+                            <p class="text-slate-300 mb-8 leading-relaxed">"The session replays combined with the macro funnel views give us context we never had before. It's like having a UX researcher watching over every new signup."</p>
+                        </div>
+                        <div class="flex items-center gap-4 relative z-10">
+                            <img src="https://i.pravatar.cc/150?u=david" alt="David Chen" class="w-10 h-10 rounded-full border border-white/10" loading="lazy">
+                            <div>
+                                <div class="text-sm font-semibold text-light">David Chen</div>
+                                <div class="text-xs text-slate-muted">Founder & CEO, Lumina</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal-on-scroll" style="transition-delay: 200ms;">
+                        <div>
+                            <div class="flex text-accent mb-4 text-xl">
+                                &#9733;&#9733;&#9733;&#9733;&#9733;
+                            </div>
+                            <p class="text-slate-300 mb-8 leading-relaxed">"We tried building this internally using generic analytics tools, but it was a mess. Flowlens works out of the box and the AI suggestions are surprisingly spot-on."</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <img src="https://i.pravatar.cc/150?u=elena" alt="Elena Rodriguez" class="w-10 h-10 rounded-full border border-white/10" loading="lazy">
+                            <div>
+                                <div class="text-sm font-semibold text-light">Elena Rodriguez</div>
+                                <div class="text-xs text-slate-muted">Growth Lead, Nexus</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integrations Section -->
+        <section id="integrations" class="py-24 md:py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="text-3xl md:text-5xl font-serif mb-4">Plays nice with your stack.</h2>
+                    <p class="text-slate-muted">Flowlens integrates seamlessly with the tools you already use.</p>
+                </div>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80 reveal-on-scroll">
+                    <div class="flex items-center gap-2 glass-card px-6 py-3 rounded-full text-lg font-bold shadow-lg hover:scale-105 transition-transform"><span class="text-[#E01E5A] text-2xl">#</span> Slack</div>
+                    <div class="flex items-center gap-2 glass-card px-6 py-3 rounded-full text-lg font-bold text-blue-400 shadow-lg hover:scale-105 transition-transform">Snowflake</div>
+                    <div class="flex items-center gap-2 glass-card px-6 py-3 rounded-full text-lg font-bold text-red-400 shadow-lg hover:scale-105 transition-transform">Amplitude</div>
+                    <div class="flex items-center gap-2 glass-card px-6 py-3 rounded-full text-lg font-bold text-yellow-400 shadow-lg hover:scale-105 transition-transform">Segment</div>
+                    <div class="flex items-center gap-2 glass-card px-6 py-3 rounded-full text-lg font-bold text-purple-400 shadow-lg hover:scale-105 transition-transform">Zapier</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-24 md:py-32 px-6 bg-[#0C0C12] border-t border-white/5">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 reveal-on-scroll">
+                    <h2 class="text-3xl md:text-5xl font-serif mb-6">Simple pricing, endless ROI.</h2>
+                    
+                    <!-- Billing Toggle -->
+                    <div class="flex items-center justify-center gap-4 mt-8">
+                        <span class="text-sm text-slate-muted font-medium">Monthly</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="billing-toggle" class="sr-only peer" checked aria-label="Toggle Annual Billing">
+                            <div class="w-12 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+                        </label>
+                        <span class="text-sm text-light font-medium flex items-center gap-2">
+                            Annually <span class="text-[10px] uppercase font-bold tracking-wider text-accent bg-accent/10 px-2 py-0.5 rounded-full">Save 20%</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
+                    <!-- Starter -->
+                    <div class="glass-card rounded-3xl p-8 border border-white/5 reveal-on-scroll">
+                        <h3 class="text-xl font-semibold mb-2">Starter</h3>
+                        <p class="text-slate-muted text-sm mb-6">Perfect for early-stage startups.</p>
+                        <div class="mb-8 flex items-end">
+                            <span class="text-4xl font-serif">$0</span>
+                            <span class="text-slate-muted text-sm ml-1">/mo</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 text-sm text-slate-300">
+                            <li class="flex gap-3"><svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 1,000 tracked users/mo</li>
+                            <li class="flex gap-3"><svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Basic drop-off maps</li>
+                            <li class="flex gap-3 text-slate-600"><svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> No AI suggestions</li>
+                        </ul>
+                        <a href="#signup" class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 text-sm font-semibold transition-colors border border-white/5">Get Started Free</a>
+                    </div>
+
+                    <!-- Growth (Popular) -->
+                    <div class="glass-card rounded-3xl p-8 border border-accent/30 relative md:scale-105 bg-slate-darker/50 shadow-[0_0_50px_rgba(245,166,35,0.15)] z-10 reveal-on-scroll" style="transition-delay: 100ms;">
+                        <div class="absolute top-0 inset-x-0 flex justify-center -translate-y-1/2">
+                            <span class="bg-accent text-dark text-xs font-bold uppercase tracking-widest py-1 px-4 rounded-full shadow-lg">Most Popular</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-accent">Growth</h3>
+                        <p class="text-slate-muted text-sm mb-6">For scaling product teams.</p>
+                        <div class="mb-8">
+                            <div class="flex items-end">
+                                <span class="text-4xl font-serif price-monthly hidden">$49</span>
+                                <span class="text-4xl font-serif price-annual">$39</span>
+                                <span class="text-slate-muted text-sm ml-1">/mo</span>
+                            </div>
+                            <div class="text-xs text-slate-500 mt-1 price-annual">Billed annually</div>
+                        </div>
+                        <ul class="space-y-4 mb-8 text-sm text-slate-300">
+                            <li class="flex gap-3"><svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 10,000 tracked users/mo</li>
+                            <li class="flex gap-3"><svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Advanced drop-off maps</li>
+                            <li class="flex gap-3"><svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> AI Fix Suggestions</li>
+                            <li class="flex gap-3"><svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Session Replays</li>
+                        </ul>
+                        <a href="#signup" class="block w-full py-3 text-center rounded-xl btn-shimmer font-semibold transition-all text-sm shadow-lg text-dark">Start 14-Day Trial</a>
+                    </div>
+
+                    <!-- Scale -->
+                    <div class="glass-card rounded-3xl p-8 border border-white/5 reveal-on-scroll" style="transition-delay: 200ms;">
+                        <h3 class="text-xl font-semibold mb-2">Scale</h3>
+                        <p class="text-slate-muted text-sm mb-6">For enterprise operations.</p>
+                        <div class="mb-8">
+                            <div class="flex items-end">
+                                <span class="text-4xl font-serif price-monthly hidden">$149</span>
+                                <span class="text-4xl font-serif price-annual">$119</span>
+                                <span class="text-slate-muted text-sm ml-1">/mo</span>
+                            </div>
+                            <div class="text-xs text-slate-500 mt-1 price-annual">Billed annually</div>
+                        </div>
+                        <ul class="space-y-4 mb-8 text-sm text-slate-300">
+                            <li class="flex gap-3"><svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Unlimited tracked users</li>
+                            <li class="flex gap-3"><svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Custom Cohort Segmentation</li>
+                            <li class="flex gap-3"><svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Dedicated CSM</li>
+                            <li class="flex gap-3"><svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Slack / Teams Alerts</li>
+                        </ul>
+                        <a href="#login" class="block w-full py-3 text-center rounded-xl bg-white/5 hover:bg-white/10 text-sm font-semibold transition-colors border border-white/5">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-24 md:py-32 px-6">
+            <div class="max-w-3xl mx-auto reveal-on-scroll">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-serif mb-4">Frequently asked questions</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item border border-white/5 bg-white/[0.02] rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
+                        <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-medium text-lg">How difficult is the installation process?</span>
+                            <svg class="w-5 h-5 text-slate-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-content bg-white/[0.01]">
+                            <div class="px-6 pb-5 text-slate-400 text-sm leading-relaxed">
+                                Extremely simple. Just copy and paste a single Javascript snippet into your app's <code>&lt;head&gt;</code> tag. No manual event tagging or engineering work is required. We start mapping your flows immediately.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item border border-white/5 bg-white/[0.02] rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
+                        <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-medium text-lg">Will this slow down my web app?</span>
+                            <svg class="w-5 h-5 text-slate-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-content bg-white/[0.01]">
+                            <div class="px-6 pb-5 text-slate-400 text-sm leading-relaxed">
+                                Not at all. The Flowlens snippet is asynchronous and weighs less than 15kb. It loads independently of your core application logic.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item border border-white/5 bg-white/[0.02] rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
+                        <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-medium text-lg">What about user privacy and GDPR?</span>
+                            <svg class="w-5 h-5 text-slate-400 transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-content bg-white/[0.01]">
+                            <div class="px-6 pb-5 text-slate-400 text-sm leading-relaxed">
+                                Flowlens is fully GDPR and CCPA compliant. We automatically mask all personally identifiable information (PII) before it ever leaves the user's browser. You only see aggregated, anonymized interaction data.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Changelog Section -->
+        <section id="changelog" class="py-24 md:py-32 bg-[#0C0C12] border-y border-white/5 px-6">
+            <div class="max-w-4xl mx-auto reveal-on-scroll">
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-5xl font-serif mb-4">Changelog</h2>
+                    <p class="text-slate-muted">What's new in Flowlens.</p>
+                </div>
+                <div class="space-y-12 border-l border-white/10 pl-8 relative">
+                    <div class="relative reveal-on-scroll">
+                        <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-accent border-4 border-[#0C0C12]"></div>
+                        <div class="text-sm text-accent font-bold tracking-wider uppercase mb-2">v2.0 &mdash; This Week</div>
+                        <h3 class="text-2xl font-semibold mb-3">AI Fix Suggestions</h3>
+                        <p class="text-slate-300 leading-relaxed text-sm">Our new LLM-powered engine now automatically drafts tooltips and checklist items based on where users drop off. Deploy them directly from the dashboard with one click.</p>
+                    </div>
+                    <div class="relative reveal-on-scroll">
+                        <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-white/20 border-4 border-[#0C0C12]"></div>
+                        <div class="text-sm text-slate-500 font-bold tracking-wider uppercase mb-2">v1.8 &mdash; Last Month</div>
+                        <h3 class="text-2xl font-semibold mb-3">Custom Cohort Segmentation</h3>
+                        <p class="text-slate-300 leading-relaxed text-sm">You can now slice and dice your funnel drop-off maps by user role, company size, and custom properties sent via our API.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="py-24 md:py-32 px-6">
+            <div class="max-w-7xl mx-auto reveal-on-scroll">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-serif mb-4">Resources</h2>
+                    <p class="text-slate-muted">Everything you need to master SaaS onboarding.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div id="docs" class="glass-card p-6 rounded-2xl block hover:-translate-y-2 transition-transform cursor-pointer">
+                        <h3 class="text-xl font-semibold mb-2 text-light">Documentation</h3>
+                        <p class="text-slate-muted text-sm mb-4">Detailed guides on setting up Flowlens and tracking custom events.</p>
+                        <span class="text-accent text-sm font-medium">Read Docs &rarr;</span>
+                    </div>
+                    <div id="api" class="glass-card p-6 rounded-2xl block hover:-translate-y-2 transition-transform cursor-pointer">
+                        <h3 class="text-xl font-semibold mb-2 text-light">API Reference</h3>
+                        <p class="text-slate-muted text-sm mb-4">Endpoints, webhooks, and SDK documentation for developers.</p>
+                        <span class="text-accent text-sm font-medium">View API &rarr;</span>
+                    </div>
+                    <div id="guides" class="glass-card p-6 rounded-2xl block hover:-translate-y-2 transition-transform cursor-pointer">
+                        <h3 class="text-xl font-semibold mb-2 text-light">Growth Guides</h3>
+                        <p class="text-slate-muted text-sm mb-4">Actionable playbooks for reducing churn and increasing activation.</p>
+                        <span class="text-accent text-sm font-medium">Read Guides &rarr;</span>
+                    </div>
+                    <div id="blog" class="glass-card p-6 rounded-2xl block hover:-translate-y-2 transition-transform cursor-pointer">
+                        <h3 class="text-xl font-semibold mb-2 text-light">Company Blog</h3>
+                        <p class="text-slate-muted text-sm mb-4">Product updates, engineering deep dives, and company news.</p>
+                        <span class="text-accent text-sm font-medium">Read Blog &rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legal Section -->
+        <section id="legal" class="py-24 md:py-32 bg-[#0C0C12] border-t border-white/5 px-6">
+            <div class="max-w-3xl mx-auto reveal-on-scroll">
+                <div class="mb-16 text-center">
+                    <h2 class="text-3xl md:text-4xl font-serif mb-4">Trust & Legal</h2>
+                </div>
+                <div class="space-y-4">
+                    <div id="privacy" class="glass-card p-8 rounded-2xl">
+                        <h3 class="text-xl font-semibold mb-4">Privacy Policy</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">We are committed to protecting your personal information and your right to privacy. This policy describes how we collect, use, and share your data.</p>
+                        <a href="#" class="text-accent text-sm font-medium hover:underline">Read full Privacy Policy &rarr;</a>
+                    </div>
+                    <div id="terms" class="glass-card p-8 rounded-2xl">
+                        <h3 class="text-xl font-semibold mb-4">Terms of Service</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">By accessing or using Flowlens, you agree to be bound by these terms. This document governs your access to our platform and services.</p>
+                        <a href="#" class="text-accent text-sm font-medium hover:underline">Read full Terms of Service &rarr;</a>
+                    </div>
+                    <div id="security" class="glass-card p-8 rounded-2xl">
+                        <h3 class="text-xl font-semibold mb-4">Security</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Security is paramount. We use SOC2 Type II compliant data centers, end-to-end encryption, and conduct regular penetration testing.</p>
+                        <a href="#" class="text-accent text-sm font-medium hover:underline">View Security Practices &rarr;</a>
+                    </div>
+                    <div id="dpa" class="glass-card p-8 rounded-2xl">
+                        <h3 class="text-xl font-semibold mb-4">Data Processing Agreement (DPA)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">For our customers operating in the EU or UK, our DPA ensures your usage of Flowlens complies with GDPR requirements.</p>
+                        <a href="#" class="text-accent text-sm font-medium hover:underline">Download DPA &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Banner -->
+        <section id="signup" class="py-24 md:py-32 px-6 relative overflow-hidden">
+            <div class="absolute inset-0 bg-accent/5"></div>
+            <!-- Large abstract background blur -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-accent/20 blur-[150px] rounded-full pointer-events-none"></div>
+            
+            <div class="max-w-4xl mx-auto text-center relative z-10 reveal-on-scroll">
+                <h2 class="text-4xl md:text-6xl font-serif mb-6 leading-tight text-light">Your users are confused.<br>Let's fix that.</h2>
+                <p class="text-lg text-slate-300 mb-10 max-w-xl mx-auto">Join 1,200+ fast-growing SaaS companies turning onboarding friction into revenue.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <input type="email" placeholder="Enter your work email" class="px-6 py-4 rounded-full bg-white/5 border border-white/10 text-light w-full sm:w-auto min-w-[300px] focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all">
+                    <button class="w-full sm:w-auto px-10 py-4 rounded-full btn-shimmer font-semibold text-lg tracking-wide shadow-[0_0_40px_rgba(245,166,35,0.3)] hover:scale-105 transition-transform duration-300 text-dark">
+                        Start Your Free Trial
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark pt-20 pb-10 border-t border-white/10 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-10 mb-16">
+                <!-- Brand Col -->
+                <div class="col-span-2">
+                    <a href="/" class="text-2xl font-serif tracking-tight text-light flex items-center gap-2 mb-4">
+                        <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="currentColor"/>
+                        </svg>
+                        Flowlens
+                    </a>
+                    <p class="text-slate-muted text-sm leading-relaxed max-w-xs mb-6">Turn onboarding confusion into customer confidence. AI-powered analytics for modern SaaS.</p>
+                    <div class="flex gap-4 text-slate-400">
+                        <a href="#" class="hover:text-light transition-colors" aria-label="Twitter">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="#" class="hover:text-light transition-colors" aria-label="LinkedIn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="#" class="hover:text-light transition-colors" aria-label="GitHub">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 100.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Product Col -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-light">Product</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#features" class="hover:text-accent transition-colors">Features</a></li>
+                        <li><a href="#pricing" class="hover:text-accent transition-colors">Pricing</a></li>
+                        <li><a href="#changelog" class="hover:text-accent transition-colors">Changelog</a></li>
+                        <li><a href="#integrations" class="hover:text-accent transition-colors">Integrations</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources Col -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-light">Resources</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#docs" class="hover:text-accent transition-colors">Documentation</a></li>
+                        <li><a href="#blog" class="hover:text-accent transition-colors">Blog</a></li>
+                        <li><a href="#guides" class="hover:text-accent transition-colors">SaaS Growth Guides</a></li>
+                        <li><a href="#api" class="hover:text-accent transition-colors">API Reference</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal Col -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-light">Legal</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#privacy" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+                        <li><a href="#terms" class="hover:text-accent transition-colors">Terms of Service</a></li>
+                        <li><a href="#security" class="hover:text-accent transition-colors">Security</a></li>
+                        <li><a href="#dpa" class="hover:text-accent transition-colors">DPA</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 text-xs text-slate-500">
+                <p>&copy; 2026 Flowlens, Inc. All rights reserved.</p>
+                <div class="flex items-center gap-2 mt-4 md:mt-0">
+                    <span class="w-2 h-2 rounded-full bg-green-500"></span> All systems operational
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Navbar Scroll Blur, Sticky Behavior, & Smart Hide
+            let lastScrollY = window.scrollY;
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('bg-[#0A0A0F]/90', 'backdrop-blur-xl', 'border-b', 'border-white/10', 'py-4', 'shadow-lg');
+                    navbar.classList.remove('py-6');
+                } else {
+                    navbar.classList.remove('bg-[#0A0A0F]/90', 'backdrop-blur-xl', 'border-b', 'border-white/10', 'py-4', 'shadow-lg');
+                    navbar.classList.add('py-6');
+                }
+
+                // Smart hide on scroll down, show on scroll up
+                if (window.scrollY > lastScrollY && window.scrollY > 150) {
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+                lastScrollY = window.scrollY;
+            });
+
+            // 2. Mobile Menu Toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            
+            menuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('flex');
+                    menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />';
+                }
+            });
+
+            // 3. Hero Text Staggered Reveal
+            const heroTitle = document.getElementById('hero-title');
+            if(heroTitle) {
+                const text = heroTitle.innerText;
+                const words = text.split(' ');
+                heroTitle.innerHTML = '';
+                words.forEach((word, index) => {
+                    const span = document.createElement('span');
+                    span.innerText = word + (index < words.length - 1 ? ' ' : '');
+                    span.className = 'reveal-word';
+                    span.style.animation = `reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards ${index * 0.05}s`;
+                    heroTitle.appendChild(span);
+                });
+            }
+
+            // 4. Scroll Reveal Animation (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Reveal only once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // 5. Cursor Spotlight Effect in Features Section
+            const featuresContainer = document.getElementById('features');
+            const spotlightContainer = document.getElementById('features-spotlight-container');
+            const spotlight = document.querySelector('.spotlight');
+
+            if (featuresContainer && spotlight) {
+                featuresContainer.addEventListener('mousemove', (e) => {
+                    const rect = featuresContainer.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    spotlight.style.opacity = '1';
+                    spotlight.style.left = `${x}px`;
+                    spotlight.style.top = `${y}px`;
+                });
+
+                featuresContainer.addEventListener('mouseleave', () => {
+                    spotlight.style.opacity = '0';
+                });
+            }
+
+            // 6. Pricing Toggle (Monthly/Annual)
+            const billingToggle = document.getElementById('billing-toggle');
+            const monthlyPrices = document.querySelectorAll('.price-monthly');
+            const annualPrices = document.querySelectorAll('.price-annual');
+            
+            if(billingToggle) {
+                billingToggle.addEventListener('change', (e) => {
+                    if(e.target.checked) {
+                        monthlyPrices.forEach(el => el.classList.add('hidden'));
+                        annualPrices.forEach(el => el.classList.remove('hidden'));
+                    } else {
+                        monthlyPrices.forEach(el => el.classList.remove('hidden'));
+                        annualPrices.forEach(el => el.classList.add('hidden'));
+                    }
+                });
+            }
+
+            // 7. FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const btn = item.querySelector('button');
+                const content = item.querySelector('.faq-content');
+                const icon = item.querySelector('.faq-icon');
+                
+                btn.addEventListener('click', () => {
+                    const isOpen = content.style.maxHeight;
+                    
+                    // Close all others
+                    document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = null);
+                    document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+                    document.querySelectorAll('.faq-item button').forEach(b => b.setAttribute('aria-expanded', 'false'));
+                    
+                    if (!isOpen) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.style.transform = 'rotate(180deg)';
+                        btn.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+
+            // 8. Floating "Book a Demo" Button Visibility
+            const floatingDemo = document.getElementById('floating-demo');
+            if (floatingDemo) {
+                window.addEventListener('scroll', () => {
+                    if(window.scrollY > 600) {
+                        floatingDemo.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                        floatingDemo.classList.add('opacity-100', 'translate-y-0');
+                    } else {
+                        floatingDemo.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                        floatingDemo.classList.remove('opacity-100', 'translate-y-0');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

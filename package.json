@@ -1,0 +1,22 @@
+{
+  "name": "flowlens-landing-page",
+  "version": "1.0.0",
+  "description": "Flowlens SaaS Landing Page - Built with HTML and Tailwind CSS",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve .",
+    "deploy": "vercel",
+    "deploy:prod": "vercel --prod"
+  },
+  "keywords": [
+    "saas",
+    "landing-page",
+    "tailwind"
+  ],
+  "author": "Flowlens",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "vercel": "^32.0.0"
+  }
+}
